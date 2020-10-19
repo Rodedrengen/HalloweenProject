@@ -25,7 +25,13 @@ public class PersonResource {
     //EMF = EMF_Creator.createEntityManagerFactory(DbSelector.DEV, Strategy.CREATE);
     private static final PersonFacade FACADE = PersonFacade.getPersonFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-
+    
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String demo() {
+        return "{\"msg\":\"Reached index of person\"}";
+    }
+    
     @Path("/all")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
