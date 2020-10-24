@@ -1,7 +1,9 @@
 package entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -37,9 +39,14 @@ public class Person implements Serializable {
         this.passcode = code;
         
         if(created.isEmpty()){
-            LocalDateTime currentDateTime = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
-            this.created = currentDateTime.format(formatter);
+//            LocalDateTime currentDateTime = LocalDateTime.now();
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+//            this.created = currentDateTime.format(formatter);
+            
+            Instant instant = Instant.now();
+            DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy")
+            .withZone(ZoneId.systemDefault());
+            this.created = DATE_TIME_FORMATTER.format(instant);
         }else{
             this.created = created;
         }
