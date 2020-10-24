@@ -23,8 +23,8 @@ public class Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
-    private String code;
+    private String personName;
+    private String passcode;
     
     private String created;
     
@@ -33,8 +33,8 @@ public class Person implements Serializable {
     }
 
     public Person(String name, String code) {
-        this.name = name;
-        this.code = code;
+        this.personName = name;
+        this.passcode = code;
         
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
@@ -42,19 +42,19 @@ public class Person implements Serializable {
     }
 
     public void setCode(String code) {
-        this.code = code;
+        this.passcode = code;
     }
 
     public String getCode() {
-        return code;
+        return passcode;
     }
     
     public String getName() {
-        return name;
+        return personName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.personName = name;
     }
     
     public Integer getId() {
