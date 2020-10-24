@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -43,10 +44,14 @@ public class Person implements Serializable {
 //            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
 //            this.created = currentDateTime.format(formatter);
             
-            Instant instant = Instant.now();
-            DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy")
-            .withZone(ZoneId.systemDefault());
-            this.created = DATE_TIME_FORMATTER.format(instant);
+//            Instant instant = Instant.now();
+//            DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy")
+//            .withZone(ZoneId.systemDefault());
+//            this.created = DATE_TIME_FORMATTER.format(instant);
+            
+            DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+            ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("CET"));
+            this.created = zdt.format(DATE_TIME_FORMATTER);
         }else{
             this.created = created;
         }
