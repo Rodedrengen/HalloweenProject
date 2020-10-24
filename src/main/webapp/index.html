@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id = "content"></div>
+    </body>
+    <button id="btn" type="button">Click Me!</button> 
+
+    <script>
+        
+        const url = "api/person/all";
+        document.getElementById("btn").addEventListener("click",getAllUsers());
+
+        function getAllUsers() {
+            fetch(`${url}`)
+                    .then(res => fetchWithErrorCheck(res))
+                    .then(data => {
+                        const trs = data.all.map((user) => {
+                            return `<tr>
+            <td>${user.created}</td><td>${user.name}</td>
+            </tr>`;
+                        });
+                        const trStr = trs.join('');
+                        document.getElementById("content").innerHTML = trStr;
+                    });
+        }
+        
+        function fetchWithErrorCheck(res) {
+                        if (!res.ok) {
+                            return Promise.reject({ status: res.status, fullError: res.json() });
+                        }
+                        return res.json();
+                    }
+
+    </script>
+
+</html>
