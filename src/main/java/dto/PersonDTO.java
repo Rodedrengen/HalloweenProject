@@ -15,24 +15,24 @@ import java.util.Date;
  */
 public class PersonDTO {
 
-    private String name;
+    private String personName;
     private int id;
     private String created;
-    private String code;
+    private String passcode;
 
     public PersonDTO(Person person) {
-        this.name = person.getName();
+        this.personName = person.getName();
         this.created = person.getCreated();
         this.id = person.getId();
-        this.code = person.getCode();
+        this.passcode = person.getCode();
     }
 
     public String getName() {
-        return name;
+        return personName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.personName = name;
     }
 
     public int getId() {
@@ -40,11 +40,11 @@ public class PersonDTO {
     }
 
     public void setCode(String code) {
-        this.code = code;
+        this.passcode = code;
     }
 
     public String getCode() {
-        return code;
+        return passcode;
     }
 
     public String getCreated() {

@@ -11,7 +11,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-public class PersonFacade implements IPersonFacade {
+public class PersonFacade {
 
     private static PersonFacade instance;
     private static EntityManagerFactory emf;
@@ -38,20 +38,18 @@ public class PersonFacade implements IPersonFacade {
         return emf.createEntityManager();
     }
 
-    @Override
-    public PersonsDTO getAllPersons() {
+    public List<Person> getAllPersons() {
         EntityManager em = getEntityManager();
         try {
             TypedQuery<Person> q = em.createQuery("SELECT p FROM Person p", Person.class);
-            PersonsDTO all = new PersonsDTO(q.getResultList());
-            System.out.println(all);
+            List<Person> all = q.getResultList();
+
             return all;
         } finally {
             em.close();
         }
     }
 
-    @Override
     public PersonDTO addPerson(String name, String code) throws MissingInputException {
         
         EntityManager em = getEntityManager();
@@ -79,17 +77,14 @@ public class PersonFacade implements IPersonFacade {
         return new PersonDTO(person);
     }
     
-    @Override
     public PersonDTO deletePerson(int id) throws PersonNotFoundException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public PersonDTO getPerson(int id) throws PersonNotFoundException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public PersonDTO editPerson(PersonDTO p) throws PersonNotFoundException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
