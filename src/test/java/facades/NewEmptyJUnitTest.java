@@ -12,12 +12,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Disabled;
 import utils.EMF_Creator;
 
 /**
  *
  * @author simon
  */
+@Disabled
 public class NewEmptyJUnitTest {
 
     private static EntityManagerFactory emf;
