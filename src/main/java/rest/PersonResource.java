@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import dto.PersonDTO;
 import entities.Person;
 import exceptions.MissingInputException;
+import exceptions.PersonNotFoundException;
 import utils.EMF_Creator;
 import facades.PersonFacade;
 import javax.persistence.EntityManagerFactory;
@@ -12,6 +13,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -38,6 +40,13 @@ public class PersonResource {
     public Response getAllPersons() {
         return Response.ok().entity(GSON.toJson(FACADE.getAllPersons())).build();
     }
+    
+    @Path("/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllPersons(@PathParam("id") int pid) throws PersonNotFoundException{
+        return Response.ok().entity(GSON.toJson(FACADE.getPersonById(pid))).build();
+    }
 
     @Path("/add")
     @POST
@@ -46,7 +55,7 @@ public class PersonResource {
     public Response addPerson(String person) throws MissingInputException {
         
         Person personToAdd = GSON.fromJson(person, Person.class);
-        PersonDTO addedPerson 
+        Person addedPerson 
                 = FACADE.addPerson(personToAdd.getName(),personToAdd.getCode());
         return Response.ok(addedPerson).build();
     }

@@ -36,7 +36,20 @@ public class PersonFacade {
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    
+    
+    public Person getPersonById(int id){
+        EntityManager em = getEntityManager();
+        Person returP = null;
+        try{
+            returP = em.find(Person.class, id);
+            
+            return returP;
+        }finally{
+            em.close();
+        }
+    }
+    
     public List<Person> getAllPersons() {
         EntityManager em = getEntityManager();
         try {
@@ -49,7 +62,7 @@ public class PersonFacade {
         }
     }
 
-    public PersonDTO addPerson(String name, String code) throws MissingInputException {
+    public Person addPerson(String name, String code) throws MissingInputException {
         
         EntityManager em = getEntityManager();
         Person person = null;
@@ -73,14 +86,10 @@ public class PersonFacade {
         }
         
         
-        return new PersonDTO(person);
+        return person;
     }
     
     public PersonDTO deletePerson(int id) throws PersonNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public PersonDTO getPerson(int id) throws PersonNotFoundException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
