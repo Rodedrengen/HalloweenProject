@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 //Does not work
 
 @Entity
-@NamedQuery(name = "Person.deleteAllRows", query = "DELETE from Person")
+@NamedQuery(name = "Person.deleteFrom", query = "DELETE from Person")
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -31,7 +31,7 @@ public class Person implements Serializable {
     
     public Person() {
     }
-
+    
     public Person(String name, String code,String created) {
         this.personName = name;
         this.passcode = code;
