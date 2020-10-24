@@ -44,7 +44,7 @@ public class PersonResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addPerson(String person) throws MissingInputException {
-        System.out.println(person);
+        
         Person personToAdd = GSON.fromJson(person, Person.class);
         PersonDTO addedPerson 
                 = FACADE.addPerson(personToAdd.getName(),personToAdd.getCode());

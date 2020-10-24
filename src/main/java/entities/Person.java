@@ -40,6 +40,12 @@ public class Person implements Serializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
         created = currentDateTime.format(formatter);
     }
+    
+    public Person(String name, String code,String created) {
+        this.personName = name;
+        this.passcode = code;
+        this.created = created;
+    }
 
     public void setCode(String code) {
         this.passcode = code;
