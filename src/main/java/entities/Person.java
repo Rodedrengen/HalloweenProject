@@ -32,19 +32,18 @@ public class Person implements Serializable {
     public Person() {
     }
 
-    public Person(String name, String code) {
-        this.personName = name;
-        this.passcode = code;
-        
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
-        created = currentDateTime.format(formatter);
-    }
-    
     public Person(String name, String code,String created) {
         this.personName = name;
         this.passcode = code;
-        this.created = created;
+        
+        if(created.isEmpty()){
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+            this.created = currentDateTime.format(formatter);
+        }else{
+            this.created = created;
+        }
+        
     }
 
     public void setCode(String code) {

@@ -61,7 +61,7 @@ public class PersonFacade {
             throw new MissingInputException("Not the right code");
         }
         try{
-            person = new Person(name,code);
+            person = new Person(name,code,"");
             
             em.getTransaction().begin();
             em.persist(person);
