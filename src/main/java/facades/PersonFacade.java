@@ -15,9 +15,16 @@ public class PersonFacade {
     private static PersonFacade instance;
     private static EntityManagerFactory emf;
     
-    private final String realCode = "kodeordet";
+    boolean isDeployed = (System.getenv("DEPLOYED") != null);
+    
+    private static String realCode;
     
     private PersonFacade() {
+        if(isDeployed){
+            realCode = System.getenv("PASS");
+        }else{
+            realCode = "kodeordet";
+        }
     }
 
     /**
